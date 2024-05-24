@@ -1,18 +1,25 @@
 //  Endpoints
 
 const express = require('express');
-
-// router
 const router = express.Router();
+const { getCollection } = require('./models/index');
 
 // GET /todos
-router.get('/todos', (req, res) => {
-	res.status(200).json({ msg: 'GET REQUEST to /api/todos' });
+router.get('/todos', async (req, res) => {
+	const collection = getCollection();
+	const todos = await collection.find({}).toArray();
+
+	res.status(200).json(todos);
 });
 
 // POST /todos
-router.post('/todos', (req, res) => {
-	res.status(201).json({ msg: 'POST REQUEST to /api/todos' });
+router.post('/todos', async (req, res) => {
+	const collection = getCollection();
+	const { todo } = req.body;
+
+	const newTodo = await collection.insertOne({ todo, status: false });
+
+	res.status(201).json({ todo, status: false, _id: newTodo.insertedId });
 });
 
 // PUT /todos/:id

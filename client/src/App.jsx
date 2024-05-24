@@ -1,11 +1,12 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 function App() {
+	const [message, setMessage] = useState('');
 	// GET Todos
 	const getTodos = async () => {
 		const res = await fetch('/api/todos/');
 		const todos = await res.json();
-		console.log(todos);
+		setMessage(todos.msg);
 	};
 
 	useEffect(() => {
@@ -16,6 +17,7 @@ function App() {
 		<Fragment>
 			<div className='container'>
 				<h1>ToDo App Tester: Initial</h1>
+				{message && <p>{message}</p>}
 			</div>
 		</Fragment>
 	);
