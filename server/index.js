@@ -4,10 +4,11 @@ const express = require('express');
 // Express instance called app
 const app = express();
 
-// test router
-app.get('/hello', (req, res) => {
-	res.status(200).json({ msg: 'Hello' });
-});
+// import todo endpoint routes
+const router = require('./routes')
+
+// prefix endpoints with /api
+app.use("/api", router)
 
 //  port
 const port = 5000;

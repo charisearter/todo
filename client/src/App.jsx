@@ -1,6 +1,17 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 function App() {
+	// GET Todos
+	const getTodos = async () => {
+		const res = await fetch('/api/todos/');
+		const todos = await res.json();
+		console.log(todos);
+	};
+
+	useEffect(() => {
+		getTodos();
+	}, []);
+
 	return (
 		<Fragment>
 			<div className='container'>

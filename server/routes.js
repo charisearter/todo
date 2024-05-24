@@ -7,7 +7,7 @@ const router = express.Router();
 
 // GET /todos
 router.get('/todos', (req, res) => {
-	res.status(200).json({ msg: 'GET REEQUEST to /api/todos' });
+	res.status(200).json({ msg: 'GET REQUEST to /api/todos' });
 });
 
 // POST /todos
@@ -22,7 +22,7 @@ router.put('/todos/:id', (req, res) => {
 
 // DELETE /todos/:id
 router.delete('/todos/:id', (req, res) => {
-	res.status(200).json({ msg: 'DEELETE REQUEST to /api/todos/:id' });
+	res.status(200).json({ msg: 'DELETE REQUEST to /api/todos/:id' });
 });
 
 module.exports = router;
